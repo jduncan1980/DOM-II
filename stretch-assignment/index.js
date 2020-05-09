@@ -4,7 +4,6 @@ const blue = document.querySelector('.block--blue');
 const green = document.querySelector('.block--green');
 const pink = document.querySelector('.block--pink');
 const gray = document.querySelector('.block--gray');
-const body = document.querySelector('body');
 
 function makeCounter(x) {
 	let counter = x;
@@ -15,23 +14,21 @@ function makeCounter(x) {
 
 let decrement = makeCounter(-1);
 
-blockGroup.forEach((block) => {
+blockGroup.forEach((block, index) => {
 	block.style.order = 1;
-	block.style.transition = 'all 5s linear';
-	// block.style.position = 'relative';
-	block.addEventListener('click', reorderBlocks);
-	block.addEventListener('mousedown', takeOff);
-	body.addEventListener('mouseup', landing);
+	block.style.transition = 'all 3s linear';
+	block.style.marginLeft = '10px';
+
+	block.addEventListener('click', (e) => {
+		block.style.order = decrement();
+	});
+
+	block.addEventListener('mousedown', (e) => {
+		block.style.marginLeft = '1500px';
+		console.log(e.target.children.children);
+	});
+
+	window.addEventListener('mouseup', (e) => {
+		block.style.marginLeft = '10px';
+	});
 });
-
-function reorderBlocks(e) {
-	e.target.style.order = decrement();
-}
-let id;
-function takeOff(e) {
-	e.target.style.marginLeft = '1000px';
-}
-
-function landing(e) {
-	e.target.style.marginLeft = 0;
-}

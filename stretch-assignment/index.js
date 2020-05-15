@@ -15,6 +15,7 @@ function makeCounter(x) {
 let decrement = makeCounter(-1);
 
 blockGroup.forEach((block, index) => {
+	console.log(blockGroup[index]);
 	block.style.order = 1;
 	block.style.transition = 'all 3s linear';
 	block.style.marginLeft = '10px';
@@ -25,10 +26,9 @@ blockGroup.forEach((block, index) => {
 
 	block.addEventListener('mousedown', (e) => {
 		block.style.marginLeft = '1500px';
-		console.log(e.target.children.children);
 	});
 
 	window.addEventListener('mouseup', (e) => {
-		block.style.marginLeft = '10px';
+		blockGroup[index].style.marginLeft = '10px';
 	});
 });
